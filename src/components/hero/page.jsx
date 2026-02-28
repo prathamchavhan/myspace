@@ -412,7 +412,7 @@ export default function Home() {
             </section>
 
             {/* ── Contact CTA Section ───────────────────────────────────────────── */}
-            <section className="py-22 pb-2 top-20 px-6 max-w-3xl mx-auto relative z-10 text-center">
+            <section className="py-22 pb-72 top-60 px-6 max-w-3xl mx-auto relative z-10 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
