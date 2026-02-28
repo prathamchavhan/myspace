@@ -402,7 +402,7 @@ export default function Home() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <p className="text-2xl md:text-3xl font-medium text-gray-400 max-w-2xl leading-relaxed">
+                        <p className="text-2xl md:text-3xl font-medium text-white max-w-2xl leading-relaxed">
                             I am Pratham Chavhan a{' '}
                             <span className="text-white">Full Stack Developer</span>{' '}
                             dedicated to crafting robust backends and seamless digital experiences.
@@ -412,7 +412,7 @@ export default function Home() {
             </section>
 
             {/* ── Contact CTA Section ───────────────────────────────────────────── */}
-            <section className="py-22 pb-72 top-60 px-6 max-w-3xl mx-auto relative z-10 text-center">
+            <section className="py-22 pb-2 top-20 px-6 max-w-3xl mx-auto relative z-10 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}

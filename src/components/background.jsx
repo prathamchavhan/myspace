@@ -184,11 +184,11 @@ const Background = () => {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full overflow-hidden pointer-events-none"
+            className="relative w-full h-full !top-10 overflow-hidden pointer-events-none"
         >
             {/* ── Clouds / Sky — drifts down + slight zoom ──────────────────────── */}
             <motion.div
-                className="absolute top-[0%] left-0 w-full h-[100%] will-change-transform"
+                className="absolute top-[1%] left-0 w-full h-[100%] will-change-transform"
                 style={{ y: cloudsY, scale: cloudsScale, transformOrigin: "center top" }}
             >
                 <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
@@ -200,7 +200,7 @@ const Background = () => {
                         style={{
                             display: "block",
                             width: "100%",
-                            height: "110%",
+                            height: "108%",
                             borderRadius: "inherit",
                             objectPosition: "center center",
                             objectFit: "cover",
