@@ -143,7 +143,7 @@ export function RocketSection() {
                             <motion.img
                                 src={IMAGE_SRC}
                                 alt="Schematic Outline"
-                                className="relative z-10 w-full max-w-[320px] h-auto object-contain pointer-events-none"
+                                className="relative z-10 w-full max-w-[380px] h-auto object-contain pointer-events-none"
                                 style={{
                                     // High contrast forces shadows to black and rest to white, multiply strips the white
                                     filter: "brightness(1.5) grayscale(100%) contrast(1500%)",
@@ -163,7 +163,7 @@ export function RocketSection() {
                         <motion.img
                             src={IMAGE_SRC}
                             alt="Mark Exoskeleton"
-                            className="absolute inset-0 m-auto w-full max-w-[320px] h-auto object-contain pointer-events-none filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
+                            className="absolute inset-0 m-auto w-full max-w-[380px] h-auto object-contain pointer-events-none filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
                             style={{ clipPath: clip2, transform: "translateZ(20px)" }}
                         />
 
@@ -177,7 +177,7 @@ export function RocketSection() {
                         <motion.img
                             src={IMAGE_SRC}
                             alt="Mark Fully Assembled"
-                            className="absolute inset-0 m-auto w-full max-w-[320px] h-auto object-contain pointer-events-none drop-shadow-2xl"
+                            className="absolute inset-0 m-auto w-full max-w-[380px] h-auto object-contain pointer-events-none drop-shadow-2xl"
                             style={{ clipPath: clip3, transform: "translateZ(30px)" }}
                         />
 
