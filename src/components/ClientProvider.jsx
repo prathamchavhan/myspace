@@ -3,7 +3,8 @@
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
-import AnimatedCursor from 'react-animated-cursor';
+import StarCursor from '@/components/StarCursor';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import Lenis from 'lenis';
 import { ThemeProvider } from 'next-themes';
 
@@ -38,22 +39,12 @@ export default function ClientProvider({ children }) {
     return (
         <Provider store={store}>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-                <AnimatedCursor
-                    innerSize={8}
-                    outerSize={35}
-                    innerScale={1}
-                    outerScale={1.5}
-                    outerAlpha={0}
-                    hasBlendMode={true}
-                    outerStyle={{
-                        border: '2px solid rgba(255, 255, 255, 0.5)',
-                        mixBlendMode: 'difference'
-                    }}
-                    innerStyle={{
-                        backgroundColor: 'rgba(255, 255, 255, 1)',
-                        mixBlendMode: 'difference'
-                    }}
-                />
+                <StarCursor />
+
+                {/* Dark theme toggle on top right */}
+                <div className="fixed top-6 right-6 z-[100]">
+                    <ThemeToggle />
+                </div>
                 {children}
             </ThemeProvider>
         </Provider>

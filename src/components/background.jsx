@@ -188,7 +188,7 @@ const Background = () => {
         >
             {/* ── Clouds / Sky — drifts down + slight zoom ──────────────────────── */}
             <motion.div
-                className="absolute top-[0%] left-0 w-full h-[100%] will-change-transform"
+                className="absolute top-[2%] left-0 w-full h-[100%] will-change-transform"
                 style={{ y: cloudsY, scale: cloudsScale, transformOrigin: "center top" }}
             >
                 <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
