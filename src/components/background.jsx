@@ -188,7 +188,7 @@ const Background = () => {
         >
             {/* ── Clouds / Sky — drifts down + slight zoom ──────────────────────── */}
             <motion.div
-                className="absolute top-[2%] left-0 w-full h-[100%] will-change-transform"
+                className="absolute top-[0%] left-0 w-full h-[100%] will-change-transform"
                 style={{ y: cloudsY, scale: cloudsScale, transformOrigin: "center top" }}
             >
                 <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
@@ -211,7 +211,7 @@ const Background = () => {
 
             {/* ── Mountain mid-ground — barely moves ────────────────────────────── */}
             <motion.div
-                className="absolute top-[10%] inset-0 w-full h-full will-change-transform"
+                className="absolute top-[7%] inset-0 w-full h-full will-change-transform"
                 style={{ y: mountainY }}
             >
                 <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
@@ -235,7 +235,7 @@ const Background = () => {
             {/* ── City / Town foreground — shoots up fastest ────────────────────── */}
             {/* Changed 'inset-0' to 'top-[10%] left-0' to push the image down */}
             <motion.div
-                className="absolute top-[7%] left-0 w-full h-full will-change-transform"
+                className="absolute top-[10%] left-0 w-full h-full will-change-transform"
                 style={{ y: townY }}
             >
                 <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
