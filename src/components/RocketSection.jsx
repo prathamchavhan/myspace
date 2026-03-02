@@ -21,9 +21,20 @@ export function RocketSection() {
 
     const opacity1 = useTransform(scrollYProgress, [0.25, 0.45], [1, 0]);
 
-    const clip2 = useTransform(scrollYProgress, [0.25, 0.45], ["inset(0% 0% 100% 0%)", "inset(0% 0% 0% 0%)"]);
-    const scanner2Y = useTransform(scrollYProgress, [0.25, 0.45], ["0%", "100%"]);
-    const scanner2Opacity = useTransform(scrollYProgress, [0.24, 0.25, 0.44, 0.45], [0, 1, 1, 0]);
+    // Exoskeleton Suit-Up Assembly (Exploded parts flying in)
+    const assembleProgress = useTransform(scrollYProgress, [0.25, 0.45], [0, 1]);
+    const exoOpacity = useTransform(scrollYProgress, [0.25, 0.28], [0, 1]);
+
+    const headY = useTransform(scrollYProgress, [0.25, 0.45], [-150, 0]);
+    const torsoScale = useTransform(scrollYProgress, [0.25, 0.45], [0.8, 1]);
+    const lArmX = useTransform(scrollYProgress, [0.25, 0.45], [-150, 0]);
+    const lArmRot = useTransform(scrollYProgress, [0.25, 0.45], [-20, 0]);
+    const rArmX = useTransform(scrollYProgress, [0.25, 0.45], [150, 0]);
+    const rArmRot = useTransform(scrollYProgress, [0.25, 0.45], [20, 0]);
+    const lLegY = useTransform(scrollYProgress, [0.25, 0.45], [150, 0]);
+    const lLegX = useTransform(scrollYProgress, [0.25, 0.45], [-30, 0]);
+    const rLegY = useTransform(scrollYProgress, [0.25, 0.45], [150, 0]);
+    const rLegX = useTransform(scrollYProgress, [0.25, 0.45], [30, 0]);
 
     // Scanner Sweep Reveal 2: Titanium -> Full Painted Red/Gold
     const clip3 = useTransform(scrollYProgress, [0.55, 0.75], ["inset(0% 0% 100% 0%)", "inset(0% 0% 0% 0%)"]);
@@ -153,19 +164,60 @@ export function RocketSection() {
                             />
                         </motion.div>
 
-                        {/* Scanner Beam 1 (Blueprint -> Titanium) */}
+                        {/* --- Layer 2: Exoskeleton Assembly (Exploded View Flying Together) --- */}
                         <motion.div
-                            className="absolute left-0 right-0 h-[3px] z-10"
-                            style={{ top: scanner2Y, opacity: scanner2Opacity, transform: "translateZ(50px)" }}
-                        />
+                            className="absolute inset-0 m-auto w-full max-w-[380px] h-auto flex items-center justify-center pointer-events-none"
+                            style={{ opacity: exoOpacity, transform: "translateZ(20px)" }}
+                        >
+                            {/* Head */}
+                            <motion.img
+                                src={IMAGE_SRC} alt="Head"
+                                className="absolute inset-0 m-auto w-full h-auto object-contain filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
+                                style={{ clipPath: "polygon(30% 0%, 70% 0%, 70% 22%, 30% 22%)", y: headY }}
+                            />
 
-                        {/* --- Layer 2: Raw Titanum / Exoskeleton Assembly --- */}
-                        <motion.img
-                            src={IMAGE_SRC}
-                            alt="Mark Exoskeleton"
-                            className="absolute inset-0 m-auto w-full max-w-[380px] h-auto object-contain pointer-events-none filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
-                            style={{ clipPath: clip2, transform: "translateZ(20px)" }}
-                        />
+                            {/* Torso */}
+                            <motion.img
+                                src={IMAGE_SRC} alt="Torso"
+                                className="absolute inset-0 m-auto w-full h-auto object-contain filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
+                                style={{ clipPath: "polygon(25% 22%, 75% 22%, 75% 55%, 25% 55%)", scale: torsoScale }}
+                            />
+
+                            {/* Left Arm */}
+                            <motion.img
+                                src={IMAGE_SRC} alt="L Arm"
+                                className="absolute inset-0 m-auto w-full h-auto object-contain filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
+                                style={{ clipPath: "polygon(0% 15%, 28% 15%, 28% 60%, 0% 60%)", x: lArmX, rotate: lArmRot }}
+                            />
+
+                            {/* Right Arm */}
+                            <motion.img
+                                src={IMAGE_SRC} alt="R Arm"
+                                className="absolute inset-0 m-auto w-full h-auto object-contain filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
+                                style={{ clipPath: "polygon(72% 15%, 100% 15%, 100% 60%, 72% 60%)", x: rArmX, rotate: rArmRot }}
+                            />
+
+                            {/* Left Leg */}
+                            <motion.img
+                                src={IMAGE_SRC} alt="L Leg"
+                                className="absolute inset-0 m-auto w-full h-auto object-contain filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
+                                style={{ clipPath: "polygon(15% 55%, 50% 55%, 50% 100%, 15% 100%)", y: lLegY, x: lLegX }}
+                            />
+
+                            {/* Right Leg */}
+                            <motion.img
+                                src={IMAGE_SRC} alt="R Leg"
+                                className="absolute inset-0 m-auto w-full h-auto object-contain filter grayscale brightness-[1.2] contrast-[1.1] saturate-0 drop-shadow-lg"
+                                style={{ clipPath: "polygon(50% 55%, 85% 55%, 85% 100%, 50% 100%)", y: rLegY, x: rLegX }}
+                            />
+
+                            {/* Base Filler to hide polygon seams once assembled */}
+                            <motion.img
+                                src={IMAGE_SRC} alt="Base Filler"
+                                className="absolute inset-0 m-auto w-full h-auto object-contain filter grayscale brightness-[1.2] contrast-[1.1] saturate-0"
+                                style={{ opacity: assembleProgress }}
+                            />
+                        </motion.div>
 
                         {/* Scanner Beam 2 (Titanium -> Fully Painted) */}
                         <motion.div
@@ -185,16 +237,12 @@ export function RocketSection() {
                         {/* Glows fade in on step 4 */}
                         <motion.div
                             className="absolute inset-0 w-full h-full flex flex-col items-center justify-start pointer-events-none"
-                            style={{ opacity: fireOp, transform: "translateZ(45px)" }}
+                            style={{ opacity: fireOp, transform: "translateZ(49px)" }}
                         >
                             {/* Chest Arc Reactor High-Glow Flare - positioned based on the iron man chest */}
-                            <div className="absolute top-[28%] w-12 h-12 bg-white rounded-full blur-[8px] drop-shadow-[0_0_30px_rgba(103,232,249,1)] shadow-[0_0_60px_25px_rgba(34,211,238,0.8)] mix-blend-screen" />
+                            <div className="absolute top-[34%] w-4 h-4 bg-white rounded-full blur-[6px] drop-shadow-[0_0_30px_rgba(103,232,249,1)] shadow-[0_0_60px_25px_rgba(34,211,238,0.8)] mix-blend-screen" />
 
-                            {/* Eye socket glows */}
-                            <div className="absolute top-[13%] flex gap-4">
-                                <div className="w-4 h-2 bg-white rounded-full blur-[4px] shadow-[0_0_15px_5px_rgba(103,232,249,0.8)]" />
-                                <div className="w-4 h-2 bg-white rounded-full blur-[4px] shadow-[0_0_15px_5px_rgba(103,232,249,0.8)]" />
-                            </div>
+
                         </motion.div>
 
                     </motion.div>
@@ -230,3 +278,4 @@ export function RocketSection() {
 }
 
 export default RocketSection;
+
