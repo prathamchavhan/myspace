@@ -165,51 +165,121 @@ export default function Home() {
             </motion.div>
 
             {/* ── Hero Text Section ─────────────────────────────────────────────── */}
-            <section className="py-24 px-6 max-w-7xl mx-auto relative z-10">
-                <div ref={heroTextRef} className="mb-16 h-20 flex items-center">
-                    <AnimatePresence mode="wait">
-                        <motion.h2
-                            key={GREETINGS[index]}
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -20, opacity: 0 }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                            className="text-4xl md:text-7xl font-bold tracking-tight text-white"
-                        >
-                            {GREETINGS[index]}.
-                        </motion.h2>
-                    </AnimatePresence>
+            <section ref={heroTextRef} className="px-6 max-w-7xl mx-auto relative z-10 flex flex-col justify-center min-h-[50vh] xl:min-h-[60vh]">
+
+                {/* 1. PHONE DESIGN (Visible on screens smaller than 768px) */}
+                <div className="block md:hidden pt-24 pb-12">
+                    <div className="mb-8 h-16 flex items-center">
+                        <AnimatePresence mode="wait">
+                            <motion.h2
+                                key={`phone-${GREETINGS[index]}`}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -20, opacity: 0 }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="text-5xl sm:text-6xl font-bold tracking-tight text-white drop-shadow-lg"
+                            >
+                                {GREETINGS[index]}.
+                            </motion.h2>
+                        </AnimatePresence>
+                    </div>
+                    <div className="flex justify-start">
+                        <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }}>
+                            <p className="text-xl sm:text-2xl font-medium text-white max-w-sm leading-relaxed drop-shadow-md">
+                                I am Pratham Chavhan a <span className="text-white font-bold">Full Stack Developer</span> dedicated to crafting robust backends and seamless digital experiences.
+                            </p>
+                        </motion.div>
+                    </div>
                 </div>
 
-                <div className="flex justify-start">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        <p className="text-2xl md:text-3xl font-medium text-white max-w-2xl leading-relaxed">
-                            I am Pratham Chavhan a{' '}
-                            <span className="text-white">Full Stack Developer</span>{' '}
-                            dedicated to crafting robust backends and seamless digital experiences.
-                        </p>
-                    </motion.div>
+                {/* 2. TABLET DESIGN (Visible between 768px and 1024px) */}
+                <div className="hidden md:block lg:hidden pt-32 pb-16">
+                    <div className="mb-10 h-20 flex items-center">
+                        <AnimatePresence mode="wait">
+                            <motion.h2
+                                key={`tablet-${GREETINGS[index]}`}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -20, opacity: 0 }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="text-7xl font-bold tracking-tight text-white drop-shadow-lg"
+                            >
+                                {GREETINGS[index]}.
+                            </motion.h2>
+                        </AnimatePresence>
+                    </div>
+                    <div className="flex justify-start">
+                        <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }}>
+                            <p className="text-3xl font-medium text-white max-w-2xl leading-relaxed drop-shadow-md">
+                                I am Pratham Chavhan a <span className="text-white font-bold">Full Stack Developer</span> dedicated to crafting robust backends and seamless digital experiences.
+                            </p>
+                        </motion.div>
+                    </div>
                 </div>
+
+                {/* 3. STANDARD LAPTOP DESIGN (Visible between 1024px and 1280px) */}
+                <div className="hidden lg:block xl:hidden pt-40 pb-20">
+                    <div className="mb-12 h-24 flex items-center">
+                        <AnimatePresence mode="wait">
+                            <motion.h2
+                                key={`laptop-${GREETINGS[index]}`}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -20, opacity: 0 }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="text-8xl font-bold tracking-tight text-white drop-shadow-lg"
+                            >
+                                {GREETINGS[index]}.
+                            </motion.h2>
+                        </AnimatePresence>
+                    </div>
+                    <div className="flex justify-start">
+                        <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }}>
+                            <p className="text-4xl font-medium text-white max-w-3xl leading-relaxed drop-shadow-md">
+                                I am Pratham Chavhan a <span className="text-white font-bold">Full Stack Developer</span> dedicated to crafting robust backends and seamless digital experiences.
+                            </p>
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* 4. MAC M4 / LARGE DISPLAY DESIGN (Visible on 1280px and above) */}
+                <div className="hidden xl:block pt-48 pb-24">
+                    <div className="mb-16 h-32 flex items-center">
+                        <AnimatePresence mode="wait">
+                            <motion.h2
+                                key={`mac-${GREETINGS[index]}`}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -20, opacity: 0 }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="text-9xl font-bold tracking-tight text-white drop-shadow-xl"
+                            >
+                                {GREETINGS[index]}.
+                            </motion.h2>
+                        </AnimatePresence>
+                    </div>
+                    <div className="flex justify-start">
+                        <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }}>
+                            <p className="text-5xl font-medium text-white max-w-5xl leading-relaxed drop-shadow-lg">
+                                I am Pratham Chavhan a <span className="text-white font-bold">Full Stack Developer</span> dedicated to crafting robust backends and seamless digital experiences.
+                            </p>
+                        </motion.div>
+                    </div>
+                </div>
+
             </section>
 
             {/* ── Contact CTA Section ───────────────────────────────────────────── */}
-            <section className="py-22 pb-72 top-60 px-6 max-w-3xl mx-auto relative z-10 text-center">
+            <section className="mt-16 sm:mt-24 md:mt-32 lg:mt-48 pb-32 sm:pb-48 md:pb-64 lg:pb-[30vh] px-6 max-w-3xl mx-auto relative z-10 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="p-12 md:p-20 rounded-3xl flex flex-col items-center justify-center"
+                    className="p-8 sm:p-12 md:p-16 lg:p-20 rounded-3xl flex flex-col items-center justify-center"
                 >
-                    <h2 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter">
-                        Let me take you on<br></br> a journey
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
+                        Let me take you on<br className="hidden sm:block" /> a journey
                     </h2>
-
-
                 </motion.div>
             </section>
         </div>

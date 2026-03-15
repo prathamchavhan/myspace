@@ -184,7 +184,7 @@ const Background = () => {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full !top-10 overflow-hidden pointer-events-none"
+            className="relative w-full h-full top-10 overflow-hidden pointer-events-none"
         >
             {/* ── Clouds / Sky — drifts down + slight zoom ──────────────────────── */}
             <motion.div
@@ -211,7 +211,7 @@ const Background = () => {
 
             {/* ── Mountain mid-ground — barely moves ────────────────────────────── */}
             <motion.div
-                className="absolute top-[7%] inset-0 w-full h-full will-change-transform"
+                className="absolute top-[10%] inset-0 w-full h-full will-change-transform"
                 style={{ y: mountainY }}
             >
                 <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
@@ -235,7 +235,7 @@ const Background = () => {
             {/* ── City / Town foreground — shoots up fastest ────────────────────── */}
             {/* Changed 'inset-0' to 'top-[10%] left-0' to push the image down */}
             <motion.div
-                className="absolute top-[10%] left-0 w-full h-full will-change-transform"
+                className="absolute top-[14%] left-0 w-full h-full will-change-transform"
                 style={{ y: townY }}
             >
                 <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
