@@ -185,6 +185,10 @@ const Background = () => {
         <div
             ref={containerRef}
             className="relative w-full h-full overflow-hidden pointer-events-none"
+            style={{
+                maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 100%)"
+            }}
         >
             {/* 1. PHONE DESIGN (Visible on screens smaller than 768px) */}
             {/* On mobile, we zoom the images in significantly and shift them up to close the massive blue sky gap */}
@@ -207,7 +211,7 @@ const Background = () => {
                 <motion.div className="absolute top-[15%] left-[-15%] w-[130%] h-[100%] will-change-transform" style={{ y: townY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/J1zm8vrw81ZeeRi4U0x0CQtcpgU.png" alt="Town"
-                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center bottom", objectFit: "cover" }} />
+                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center top", objectFit: "cover" }} />
                     </div>
                 </motion.div>
             </div>
@@ -232,7 +236,7 @@ const Background = () => {
                 <motion.div className="absolute top-[12%] left-0 w-full h-[100%] will-change-transform" style={{ y: townY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/J1zm8vrw81ZeeRi4U0x0CQtcpgU.png" alt="Town"
-                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center bottom", objectFit: "cover" }} />
+                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center top", objectFit: "cover" }} />
                     </div>
                 </motion.div>
             </div>
@@ -254,7 +258,7 @@ const Background = () => {
                 <motion.div className="absolute top-[10%] left-0 w-full h-[100%] will-change-transform" style={{ y: townY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/J1zm8vrw81ZeeRi4U0x0CQtcpgU.png" alt="Town"
-                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
+                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center top", objectFit: "cover" }} />
                     </div>
                 </motion.div>
             </div>
@@ -262,22 +266,22 @@ const Background = () => {
             {/* 4. MAC M4 / LARGE DISPLAY DESIGN (Visible on 1280px and above) */}
             <div className="hidden xl:block absolute inset-0 w-full h-full">
                 {/* Original working design tailored by you */}
-                <motion.div className="absolute top-[0%] left-0 w-full h-[108%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
+                <motion.div className="absolute top-[4%] left-0 w-full h-[108%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/9SnlRERg9iwp8HZyYEp7VtlP8P0.png" alt="Clouds base"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
                     </div>
                 </motion.div>
-                <motion.div className="absolute top-[10%] left-0 w-full h-[100%] will-change-transform" style={{ y: mountainY }}>
+                <motion.div className="absolute top-[15%] left-0 w-full h-[100%] will-change-transform" style={{ y: mountainY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/snR7rLEQS23Ks0LjGdsp4ciM48.png" alt="Mountain mid"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
                     </div>
                 </motion.div>
-                <motion.div className="absolute top-[14%] left-0 w-full h-[100%] will-change-transform" style={{ y: townY }}>
+                <motion.div className="absolute top-[18%] left-0 w-full h-[100%] will-change-transform" style={{ y: townY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
-                        <img src="https://framerusercontent.com/images/J1zm8vrw81ZeeRi4U0x0CQtcpgU.png" alt="Town"
-                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
+                        <img src="/assets/city.png" alt="Town"
+                            style={{ display: "block", width: "100%", height: "100%", objectPosition: "center top", objectFit: "cover" }} />
                     </div>
                 </motion.div>
             </div>
