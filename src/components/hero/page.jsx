@@ -270,17 +270,44 @@ export default function Home() {
             </section>
 
             {/* ── Contact CTA Section ───────────────────────────────────────────── */}
-            <section className="mt-16 sm:mt-24 md:mt-32 lg:mt-48 pb-32 sm:pb-48 md:pb-64 lg:pb-[30vh] px-6 max-w-3xl mx-auto relative z-10 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="p-8 sm:p-12 md:p-16 lg:p-20 rounded-3xl flex flex-col items-center justify-center"
-                >
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
-                        Let me take you on<br className="hidden sm:block" /> a journey
-                    </h2>
-                </motion.div>
+            <section className="px-6 max-w-3xl mx-auto relative z-10 text-center">
+
+                {/* 1. PHONE DESIGN (Visible on screens smaller than 768px) */}
+                <div className="block md:hidden pb-10 pt-4">
+                    <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-4 rounded-2xl flex flex-col items-center justify-center">
+                        <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
+                            Let me take you on<br /> a journey
+                        </h2>
+                    </motion.div>
+                </div>
+
+                {/* 2. TABLET DESIGN (Visible between 768px and 1024px) */}
+                <div className="hidden md:block lg:hidden mt-8 pb-20">
+                    <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-8 rounded-3xl flex flex-col items-center justify-center">
+                        <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
+                            Let me take you on<br /> a journey
+                        </h2>
+                    </motion.div>
+                </div>
+
+                {/* 3. STANDARD LAPTOP DESIGN (Visible between 1024px and 1280px) */}
+                <div className="hidden lg:block xl:hidden mt-16 pb-32">
+                    <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-12 rounded-3xl flex flex-col items-center justify-center">
+                        <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
+                            Let me take you on<br /> a journey
+                        </h2>
+                    </motion.div>
+                </div>
+
+                {/* 4. MAC M4 / LARGE DISPLAY DESIGN (Visible on 1280px and above) */}
+                <div className="hidden xl:block mt-32 pb-[25vh]">
+                    <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-20 rounded-3xl flex flex-col items-center justify-center">
+                        <h2 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
+                            Let me take you on<br /> a journey
+                        </h2>
+                    </motion.div>
+                </div>
+
             </section>
         </div>
     );
