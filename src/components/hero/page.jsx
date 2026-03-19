@@ -261,7 +261,9 @@ export default function Home() {
                     <div className="flex justify-start">
                         <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }}>
                             <p className="text-5xl font-medium text-white max-w-5xl leading-relaxed drop-shadow-lg">
-                                I am Pratham Chavhan a <span className="text-white font-bold">Full Stack Developer</span> dedicated to crafting robust backends and seamless digital experiences.
+                                <br />
+                                <br />
+                                <br />
                             </p>
                         </motion.div>
                     </div>
