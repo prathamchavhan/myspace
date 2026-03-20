@@ -271,7 +271,7 @@ export default function Home() {
 
             </section>
 
-            {/* ── Contact CTA Section ───────────────────────────────────────────── */}
+            {/* ── Contact CTA Section ──── ───────────────────────────────────────── */}
             <section className="px-6 max-w-3xl mx-auto relative z-10 text-center">
 
                 {/* 1. PHONE DESIGN (Visible on screens smaller than 768px) */}
