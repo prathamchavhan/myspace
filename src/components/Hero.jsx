@@ -107,7 +107,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative min-h-screen w-full flex items-center overflow-hidden bg-[#f5f5f3] dark:bg-black transition-colors duration-500 font-mono">
+        <section className="relative min-h-screen w-full flex items-center overflow-hidden bg-white dark:bg-[#0a0a0f] transition-colors duration-500 font-mono">
 
             {/* ── Light mode: subtle dot grid ───────────────────────────────── */}
             <div

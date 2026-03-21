@@ -105,7 +105,7 @@ export default function IPodWidget() {
             <motion.div
                 drag
                 dragMomentum={false}
-                className="fixed bottom-6 right-6 sm:absolute sm:bottom-62 sm:right-auto sm:left-6 lg:left-24 z-50 flex flex-col items-center justify-center gap-1.5 cursor-pointer group"
+                className="fixed bottom-20 right-6 sm:absolute sm:bottom-80 lg:bottom-[22rem] sm:right-auto sm:left-6 lg:left-24 z-50 flex flex-col items-center justify-center gap-1.5 cursor-pointer group"
                 onClick={() => setIsOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
