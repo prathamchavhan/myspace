@@ -1,16 +1,17 @@
-import Home from "@/components/hero/page";
-import Background from "@/components/background";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import StarCursor from "@/components/StarCursor";
+import Preloader from "@/components/Preloader";
+
 export default function Page() {
   return (
-    <div>
-      <div className="relative">
-        <Home />
+    <>
+      <Preloader />
+      <div>
+        <StarCursor />
+        <Navbar />
+        <Hero />
       </div>
-
-      {/* Section below Hero */}
-      <section className="relative w-full h-screen overflow-hidden">
-        <Background />
-      </section>
-    </div>
+    </>
   );
 }

@@ -1,74 +1,165 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
-export default function StarCursor() {
-    const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+export default function PaperAeroplaneCursor() {
     const [isMounted, setIsMounted] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+
+    // Track raw mouse position for rotation calculation
+    const rawX = useMotionValue(-200);
+    const rawY = useMotionValue(-200);
+    const prevX = useMotionValue(-200);
+    const prevY = useMotionValue(-200);
+    const [rotation, setRotation] = useState(0);
+
+    // Fast spring for the plane itself
+    const planeX = useSpring(-200, { damping: 35, stiffness: 700, mass: 0.15 });
+    const planeY = useSpring(-200, { damping: 35, stiffness: 700, mass: 0.15 });
+
+    // Slower spring for the trail dot
+    const trailX = useSpring(-200, { damping: 25, stiffness: 200, mass: 0.6 });
+    const trailY = useSpring(-200, { damping: 25, stiffness: 200, mass: 0.6 });
 
     useEffect(() => {
         setIsMounted(true);
 
-        document.body.style.cursor = 'none';
-
-        // Set cursor to none on all elements when hovering
-        const style = document.createElement('style');
-        style.innerHTML = `
-            * {
-                cursor: none !important;
-            }
-        `;
+        const style = document.createElement("style");
+        style.innerHTML = `* { cursor: none !important; }`;
         document.head.appendChild(style);
 
+        let lastX = -200;
+        let lastY = -200;
+
         const updateMousePosition = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+            const dx = e.clientX - lastX;
+            const dy = e.clientY - lastY;
+
+            // Only update rotation if there's meaningful movement
+            if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+                // atan2 gives angle in radians; convert to degrees
+                // Plane SVG points right by default, so offset by -45deg to point diagonally
+                const angle = Math.atan2(dy, dx) * (180 / Math.PI) - 45;
+                setRotation(angle);
+            }
+
+            lastX = e.clientX;
+            lastY = e.clientY;
+
+            planeX.set(e.clientX);
+            planeY.set(e.clientY);
+            trailX.set(e.clientX);
+            trailY.set(e.clientY);
         };
+
+        const handleMouseOver = (e) => {
+            if (
+                e.target.closest(
+                    'a, button, input, [role="button"], [class*="cursor-grab"], [class*="cursor-pointer"]'
+                )
+            ) {
+                setIsHovering(true);
+            } else {
+                setIsHovering(false);
+            }
+        };
+
         window.addEventListener("mousemove", updateMousePosition, { passive: true });
+        window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
         return () => {
             window.removeEventListener("mousemove", updateMousePosition);
+            window.removeEventListener("mouseover", handleMouseOver);
             document.head.removeChild(style);
-            document.body.style.cursor = 'auto';
         };
-    }, []);
+    }, [planeX, planeY, trailX, trailY]);
 
-    // Also avoid rendering the cursor at 0,0 for a split second before mount
     if (!isMounted) return null;
 
     return (
-        <motion.div
-            className="fixed top-0 left-0 pointer-events-none z-[99999] text-yellow-400"
-            // We removed mixBlendMode: 'difference' so the yellow color stays vibrant and doesn't invert
-            animate={{
-                x: mousePosition.x - 12,
-                y: mousePosition.y - 12,
-                rotate: 360,
-            }}
-            transition={{
-                x: { type: "tween", ease: "linear", duration: 0 },
-                y: { type: "tween", ease: "linear", duration: 0 },
-                rotate: { duration: 4, repeat: Infinity, ease: "linear" }
-            }}
-        >
-            {/* Shining Yellow Star SVG */}
-            <svg
-                width="23"
-                height="23"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                // Yellow glow drop shadow
-                className="drop-shadow-[0_0_12px_rgba(250,204,21,1)]"
+        <>
+            {/* Trail dot — small fading circle that lags behind */}
+            <motion.div
+                className="fixed top-0 left-0 pointer-events-none z-[99997]"
+                style={{
+                    x: trailX,
+                    y: trailY,
+                    translateX: "-50%",
+                    translateY: "-50%",
+                }}
             >
-                <path d="M12 1L14.59 8.41L22 11L14.59 13.59L12 21L9.41 13.59L2 11L9.41 8.41L12 1Z" />
-            </svg>
-        </motion.div>
+                <motion.div
+                    className="rounded-full bg-[#0f172a] dark:bg-white"
+                    animate={{
+                        width: isHovering ? 6 : 4,
+                        height: isHovering ? 6 : 4,
+                        opacity: isHovering ? 0.15 : 0.25,
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+            </motion.div>
+
+            {/* Paper Aeroplane cursor */}
+            <motion.div
+                className="fixed top-0 left-0 pointer-events-none z-[99999]"
+                style={{
+                    x: planeX,
+                    y: planeY,
+                    translateX: "-50%",
+                    translateY: "-50%",
+                    rotate: rotation,
+                }}
+                animate={{
+                    scale: isHovering ? 1.35 : 1,
+                    opacity: isHovering ? 0.75 : 1,
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            >
+                {/* Paper aeroplane SVG — points right, tip at centre */}
+                <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-[#0f172a] dark:text-white"
+                >
+                    {/*
+                        Paper aeroplane viewed from the side / slightly above.
+                        Tip at (22, 12) — the "nose".
+                        Left wing upper face, lower face, and body fold visible.
+                    */}
+                    {/* Upper wing face — light fill */}
+                    <path
+                        d="M22 12 L2 4 L8 12Z"
+                        fill="currentColor"
+                        fillOpacity="0.9"
+                    />
+                    {/* Lower wing / belly — slightly dimmer for depth */}
+                    <path
+                        d="M22 12 L2 4 L8 12 L2 20Z"
+                        fill="currentColor"
+                        fillOpacity="0.45"
+                    />
+                    {/* Centre crease / fold line */}
+                    <line
+                        x1="22"
+                        y1="12"
+                        x2="8"
+                        y2="12"
+                        stroke="currentColor"
+                        strokeOpacity="0.5"
+                        strokeWidth="0.75"
+                    />
+                    {/* Tail fold — the small flap at the back */}
+                    <path
+                        d="M8 12 L5 9 L2 4Z"
+                        fill="currentColor"
+                        fillOpacity="0.65"
+                    />
+                </svg>
+            </motion.div>
+        </>
     );
 }
-
-
-
-
-
-

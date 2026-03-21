@@ -6,6 +6,7 @@
 
 @theme {
   --font-sans: var(--font-inter);
+  --font-mono: var(--font-dm-mono);
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
@@ -153,6 +154,9 @@
 @layer base {
   * {
     @apply border-border;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 400ms;
   }
 
   body {

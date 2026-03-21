@@ -3,8 +3,6 @@
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
-import StarCursor from '@/components/StarCursor';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import Lenis from 'lenis';
 import { ThemeProvider } from 'next-themes';
 
@@ -38,13 +36,7 @@ export default function ClientProvider({ children }) {
 
     return (
         <Provider store={store}>
-            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-                <StarCursor />
-
-                {/* Dark theme toggle on top right */}
-                <div className="fixed top-6 right-6 z-[100]">
-                    <ThemeToggle />
-                </div>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
                 {children}
             </ThemeProvider>
         </Provider>
