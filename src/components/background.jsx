@@ -185,10 +185,7 @@ const Background = () => {
         <div
             ref={containerRef}
             className="relative w-full h-full overflow-hidden pointer-events-none"
-            style={{
-                maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 100%)"
-            }}
+
         >
             {/* 1. PHONE DESIGN (Visible on screens smaller than 768px) */}
             {/* On mobile, we zoom the images in significantly and shift them up to close the massive blue sky gap */}
@@ -265,14 +262,14 @@ const Background = () => {
 
             {/* 4. MAC M4 / LARGE DISPLAY DESIGN (Visible on 1280px and above) */}
             <div className="hidden xl:block absolute inset-0 w-full h-full">
-                {/* Original working design tailored by you */}
-                <motion.div className="absolute top-[4%] left-0 w-full h-[108%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
+
+                <motion.div className="absolute top-[1%] left-0 w-full h-[122%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/9SnlRERg9iwp8HZyYEp7VtlP8P0.png" alt="Clouds base"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
                     </div>
                 </motion.div>
-                <motion.div className="absolute top-[15%] left-0 w-full h-[100%] will-change-transform" style={{ y: mountainY }}>
+                <motion.div className="absolute top-[18%] left-0 w-full h-[100%] will-change-transform" style={{ y: mountainY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/snR7rLEQS23Ks0LjGdsp4ciM48.png" alt="Mountain mid"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
