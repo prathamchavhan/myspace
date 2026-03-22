@@ -260,22 +260,25 @@ const Background = () => {
                 </motion.div>
             </div>
 
-            {/* 4. MAC M4 / LARGE DISPLAY DESIGN (Visible on 1280px and above) */}
+            {/* 4. LARGE LAPTOP / 1920×1080 FHD DESIGN (Visible on 1280px and above — e.g. Lenovo IdeaPad Gaming 3) */}
             <div className="hidden xl:block absolute inset-0 w-full h-full">
 
-                <motion.div className="absolute top-[1%] left-0 w-full h-[122%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
+                {/* Clouds — start at very top, tall enough for parallax travel */}
+                <motion.div className="absolute top-[-2%] left-0 w-full h-[138%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/9SnlRERg9iwp8HZyYEp7VtlP8P0.png" alt="Clouds base"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
                     </div>
                 </motion.div>
-                <motion.div className="absolute top-[18%] left-0 w-full h-[100%] will-change-transform" style={{ y: mountainY }}>
+                {/* Mountain — brought up significantly for 1080p wide screens */}
+                <motion.div className="absolute top-[8%] left-0 w-full h-[105%] will-change-transform" style={{ y: mountainY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/snR7rLEQS23Ks0LjGdsp4ciM48.png" alt="Mountain mid"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
                     </div>
                 </motion.div>
-                <motion.div className="absolute top-[18%] left-0 w-full h-[100%] will-change-transform" style={{ y: townY }}>
+                {/* City — brought up to align with mountain base, fills lower half of screen */}
+                <motion.div className="absolute top-[10%] left-0 w-full h-[105%] will-change-transform" style={{ y: townY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="/assets/city.png" alt="Town"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center top", objectFit: "cover" }} />
