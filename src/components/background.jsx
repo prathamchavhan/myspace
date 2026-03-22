@@ -216,21 +216,21 @@ const Background = () => {
             {/* 2. TABLET DESIGN (Visible between 768px and 1024px) */}
             <div className="hidden md:block lg:hidden absolute inset-0 w-full h-full">
                 {/* Tablet Clouds */}
-                <motion.div className="absolute top-[0%] left-[-10%] w-[120%] h-[110%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
+                <motion.div className="absolute top-[0%] left-[-10%] w-[120%] h-[122%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/9SnlRERg9iwp8HZyYEp7VtlP8P0.png" alt="Clouds base"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
                     </div>
                 </motion.div>
                 {/* Tablet Mountain */}
-                <motion.div className="absolute top-[5%] left-0 w-full h-[105%] will-change-transform" style={{ y: mountainY }}>
+                <motion.div className="absolute top-[2%] left-0 w-full h-[105%] will-change-transform" style={{ y: mountainY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/snR7rLEQS23Ks0LjGdsp4ciM48.png" alt="Mountain mid"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center bottom", objectFit: "cover" }} />
                     </div>
                 </motion.div>
                 {/* Tablet Town */}
-                <motion.div className="absolute top-[12%] left-0 w-full h-[100%] will-change-transform" style={{ y: townY }}>
+                <motion.div className="absolute top-[10%] left-0 w-full h-[100%] will-change-transform" style={{ y: townY }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/J1zm8vrw81ZeeRi4U0x0CQtcpgU.png" alt="Town"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center top", objectFit: "cover" }} />
@@ -240,7 +240,7 @@ const Background = () => {
 
             {/* 3. STANDARD LAPTOP DESIGN (Visible between 1024px and 1280px) */}
             <div className="hidden lg:block xl:hidden absolute inset-0 w-full h-full">
-                <motion.div className="absolute top-[0%] left-0 w-full h-[108%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
+                <motion.div className="absolute top-[0%] left-0 w-full h-[122%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/9SnlRERg9iwp8HZyYEp7VtlP8P0.png" alt="Clouds base"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
