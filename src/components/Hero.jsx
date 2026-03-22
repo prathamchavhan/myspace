@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { useTheme } from "next-themes";
 import IPodWidget from "./IPodWidget";
+import ResumeWidget from "./ResumeWidget";
 
 
 function StarField() {
@@ -341,6 +342,9 @@ export default function Hero() {
 
             {/* iPod Interactive Widget */}
             <IPodWidget />
+
+            {/* Resume Interactive Widget */}
+            <ResumeWidget />
         </section>
     );
 }

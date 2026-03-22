@@ -6,6 +6,7 @@ import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 export default function PaperAeroplaneCursor() {
     const [isMounted, setIsMounted] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
+    const [cursorText, setCursorText] = useState(null);
 
     // Track raw mouse position for rotation calculation
     const rawX = useMotionValue(-200);
@@ -54,6 +55,13 @@ export default function PaperAeroplaneCursor() {
         };
 
         const handleMouseOver = (e) => {
+            const cursorEl = e.target.closest('[data-cursor-text]');
+            if (cursorEl) {
+                setCursorText(cursorEl.getAttribute('data-cursor-text'));
+            } else {
+                setCursorText(null);
+            }
+
             if (
                 e.target.closest(
                     'a, button, input, [role="button"], [class*="cursor-grab"], [class*="cursor-pointer"]'
@@ -100,7 +108,7 @@ export default function PaperAeroplaneCursor() {
                 />
             </motion.div>
 
-            {/* Paper Aeroplane cursor */}
+            {/* Main Cursor (Aeroplane or Text) */}
             <motion.div
                 className="fixed top-0 left-0 pointer-events-none z-[99999]"
                 style={{
@@ -108,57 +116,57 @@ export default function PaperAeroplaneCursor() {
                     y: planeY,
                     translateX: "-50%",
                     translateY: "-50%",
-                    rotate: rotation,
+                    rotate: cursorText ? 0 : rotation,
                 }}
                 animate={{
-                    scale: isHovering ? 1.35 : 1,
-                    opacity: isHovering ? 0.75 : 1,
+                    scale: cursorText ? 1 : (isHovering ? 1.35 : 1),
+                    opacity: isHovering || cursorText ? 0.95 : 1,
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-                {/* Paper aeroplane SVG — points right, tip at centre */}
-                <svg
-                    width="26"
-                    height="26"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-[#0f172a] dark:text-white"
-                >
-                    {/*
-                        Paper aeroplane viewed from the side / slightly above.
-                        Tip at (22, 12) — the "nose".
-                        Left wing upper face, lower face, and body fold visible.
-                    */}
-                    {/* Upper wing face — light fill */}
-                    <path
-                        d="M22 12 L2 4 L8 12Z"
-                        fill="currentColor"
-                        fillOpacity="0.9"
-                    />
-                    {/* Lower wing / belly — slightly dimmer for depth */}
-                    <path
-                        d="M22 12 L2 4 L8 12 L2 20Z"
-                        fill="currentColor"
-                        fillOpacity="0.45"
-                    />
-                    {/* Centre crease / fold line */}
-                    <line
-                        x1="22"
-                        y1="12"
-                        x2="8"
-                        y2="12"
-                        stroke="currentColor"
-                        strokeOpacity="0.5"
-                        strokeWidth="0.75"
-                    />
-                    {/* Tail fold — the small flap at the back */}
-                    <path
-                        d="M8 12 L5 9 L2 4Z"
-                        fill="currentColor"
-                        fillOpacity="0.65"
-                    />
-                </svg>
+                {cursorText ? (
+                    <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="bg-[#0f172a] dark:bg-white text-white dark:text-black px-4 py-2 rounded-full text-sm font-semibold tracking-wide whitespace-nowrap shadow-xl"
+                    >
+                        {cursorText}
+                    </motion.div>
+                ) : (
+                    <svg
+                        width="26"
+                        height="26"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="text-[#0f172a] dark:text-white"
+                    >
+                        <path
+                            d="M22 12 L2 4 L8 12Z"
+                            fill="currentColor"
+                            fillOpacity="0.9"
+                        />
+                        <path
+                            d="M22 12 L2 4 L8 12 L2 20Z"
+                            fill="currentColor"
+                            fillOpacity="0.45"
+                        />
+                        <line
+                            x1="22"
+                            y1="12"
+                            x2="8"
+                            y2="12"
+                            stroke="currentColor"
+                            strokeOpacity="0.5"
+                            strokeWidth="0.75"
+                        />
+                        <path
+                            d="M8 12 L5 9 L2 4Z"
+                            fill="currentColor"
+                            fillOpacity="0.65"
+                        />
+                    </svg>
+                )}
             </motion.div>
         </>
     );

@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const col1Images = [
     "/assets/newside.jpeg",
     "/assets/intern.jpeg", // Kayaking
-    "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=400&fit=crop", // Dog
+    "/assets/waterfall.png", // Dog
     "/assets/nashik.png", // Friends
 ];
 
@@ -17,7 +17,7 @@ const col2Images = [
     "/assets/smile.png", // Scenery
     "/assets/3.png", // Friends 2
     "/assets/manali.png", // Motorcycle
-    "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=400&fit=crop", // Nature
+    "/assets/vist/image.png", // Nature
 ];
 
 export default function AboutMe() {
@@ -51,20 +51,23 @@ export default function AboutMe() {
     }, []);
 
     return (
-        <section className="relative w-full py-16 md:py-24 px-6 sm:px-10 bg-[#f5f5f3] dark:bg-black transition-colors duration-500 font-sans">
+        <section
+            data-cursor-text="About me"
+            className="relative w-full pt-8 pb-16 md:pt-12 md:pb-24 px-6 sm:px-10 bg-[#f5f5f3] dark:bg-black transition-colors duration-500 font-sans"
+        >
             <div
                 ref={containerRef}
-                className="max-w-5xl mx-auto bg-[#f8f9fa] dark:bg-black rounded-[2rem] grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 items-stretch overflow-hidden border-2 sm:border-4 border-white dark:border-white shadow-sm"
+                className="max-w-4xl mx-auto bg-[#f8f9fa] dark:bg-black rounded-[2rem] grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 items-stretch overflow-hidden border-2 sm:border-4 border-white dark:border-white shadow-sm"
             >
 
                 {/* Left Column: Text */}
-                <div ref={textRef} className="flex flex-col justify-center gap-6 p-8 md:p-12 lg:p-16 lg:pr-8">
+                <div ref={textRef} className="flex flex-col justify-center gap-6 p-6 md:p-10 lg:p-12 lg:pr-6">
                     <h2 className="text-[20px] font-semibold text-[#102737] dark:text-white mb-1" style={{ fontFamily: '"Funnel Display", sans-serif' }}>
                         About me
                     </h2>
 
                     <p className="text-[16px] leading-[24px] text-[#47525a] dark:text-white" style={{ fontFamily: '"Funnel Display", sans-serif' }}>
-                        Hi, I’m Pratham Chavhan — a passionate Full Stack Developer and Designer who loves building modern, user-friendly web applications.
+                        I’m Pratham Chavhan — a passionate Full Stack Developer and Designer, and a Computer Science Engineering graduate from G H Raisoni College of Engineering, Nagpur.
                     </p>
 
                     <p className="text-[16px] leading-[24px] text-[#47525a] dark:text-white" style={{ fontFamily: '"Funnel Display", sans-serif' }}>
@@ -80,50 +83,55 @@ export default function AboutMe() {
                 </div>
 
                 {/* Right Column: Auto-Scrolling Images */}
-                <div className="h-[450px] md:h-auto min-h-[450px] md:min-h-[500px] w-full relative flex gap-4 overflow-hidden pr-0 lg:pr-8 pb-0 pt-0">
+                <div className="h-[350px] md:h-auto min-h-[350px] md:min-h-[400px] w-full relative flex gap-4 overflow-hidden pr-0 lg:pr-6 pb-0 pt-0">
 
                     {/* Column 1 - Scrolling UP */}
-                    <div className="flex-1 overflow-hidden relative">
-                        <motion.div
-                            className="flex flex-col gap-4 absolute w-full"
-                            animate={{ y: ["0%", "-50%"] }}
-                            transition={{
-                                duration: 25,
-                                ease: "linear",
-                                repeat: Infinity,
-                            }}
-                        >
+                    <div className="flex-1 overflow-hidden relative marquee-container">
+                        <div className="flex flex-col gap-4 absolute w-full animate-marquee-up">
                             {/* Duplicate array for seamless infinite scroll */}
                             {[...col1Images, ...col1Images].map((src, i) => (
                                 <div key={i} className="w-full aspect-[4/5] relative rounded-3xl overflow-hidden border-2 sm:border-4 border-white dark:border-white">
                                     <img src={src} alt="Lifestyle" className="w-full h-full object-cover" draggable={false} loading="lazy" />
                                 </div>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* Column 2 - Scrolling DOWN */}
-                    <div className="flex-1 overflow-hidden relative">
-                        <motion.div
-                            className="flex flex-col gap-4 absolute w-full"
-                            animate={{ y: ["-50%", "0%"] }}
-                            transition={{
-                                duration: 30, // Slightly slower/faster for parallax feel
-                                ease: "linear",
-                                repeat: Infinity,
-                            }}
-                        >
+                    <div className="flex-1 overflow-hidden relative marquee-container">
+                        <div className="flex flex-col gap-4 absolute w-full animate-marquee-down">
                             {[...col2Images, ...col2Images].map((src, i) => (
                                 <div key={i} className="w-full aspect-[4/5] relative rounded-3xl overflow-hidden border-2 sm:border-4 border-white dark:border-white">
                                     <img src={src} alt="Lifestyle" className="w-full h-full object-cover" draggable={false} loading="lazy" />
                                 </div>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes marqueeUp {
+                    from { transform: translateY(0); }
+                    to { transform: translateY(-50%); }
+                }
+                @keyframes marqueeDown {
+                    from { transform: translateY(-50%); }
+                    to { transform: translateY(0); }
+                }
+                .animate-marquee-up {
+                    animation: marqueeUp 25s linear infinite;
+                }
+                .animate-marquee-down {
+                    animation: marqueeDown 30s linear infinite;
+                }
+                .marquee-container:hover .animate-marquee-up,
+                .marquee-container:hover .animate-marquee-down {
+                    animation-play-state: paused !important;
+                }
+            `}} />
         </section>
     );
 }
