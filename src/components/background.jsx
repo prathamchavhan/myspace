@@ -264,7 +264,7 @@ const Background = () => {
             <div className="hidden xl:block absolute inset-0 w-full h-full">
 
                 {/* Clouds — start at very top, tall enough for parallax travel */}
-                <motion.div className="absolute top-[-2%] left-0 w-full h-[138%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
+                <motion.div className="absolute top-[-2%] left-0 w-full h-[132%] origin-top will-change-transform" style={{ y: cloudsY, scale: cloudsScale }}>
                     <div style={{ position: "absolute", borderRadius: "inherit", inset: "0px" }}>
                         <img src="https://framerusercontent.com/images/9SnlRERg9iwp8HZyYEp7VtlP8P0.png" alt="Clouds base"
                             style={{ display: "block", width: "100%", height: "100%", objectPosition: "center center", objectFit: "cover" }} />
