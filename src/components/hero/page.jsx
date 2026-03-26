@@ -113,56 +113,59 @@ export default function Home() {
 
     return (
         <div ref={containerRef} className="relative">
-            {/* ── City Parallax Background ─────────────────────────────────────── */}
-            <motion.div
-                className="fixed inset-0 z-[-2] w-full h-full pointer-events-none"
-                style={{ scale: cityScale }}
+            {/* ── Sticky Background Container (scoped to this section) ────────── */}
+            <div
+                className="sticky top-0 h-screen overflow-hidden pointer-events-none"
+                style={{ marginBottom: '-100vh' }}
             >
-                {/* Replaced copy.png with blue background div */}
-                <div
-                    className="w-full h-full"
-                    style={{ background: "#4F97C2" }}
-                />
-            </motion.div>
+                {/* City Parallax */}
+                <motion.div
+                    className="absolute inset-0 z-0 w-full h-full"
+                    style={{ scale: cityScale }}
+                >
+                    <div className="w-full h-full" style={{ background: "#4F97C2" }} />
+                </motion.div>
 
-            {/* ── Sky / Clouds Overlay (Lenis-driven parallax) ──────────────────── */}
-            <motion.div
-                id="clouds"
-                className="fixed inset-0 z-[-1] w-full h-full pointer-events-none will-change-transform"
-                style={{
-                    scale: skyScale,
-                    opacity: skyOpacity,
-                    transformOrigin: 'center center',
-                }}
-            >
-                <div
+                {/* Sky / Clouds Overlay */}
+                <motion.div
+                    id="clouds"
+                    className="absolute inset-0 z-[1] w-full h-full will-change-transform"
                     style={{
-                        transform: "perspective(1200px)",
-                        width: "100%",
-                        height: "100%",
-                        background: "rgba(16, 137, 198, 1)",
+                        scale: skyScale,
+                        opacity: skyOpacity,
+                        transformOrigin: 'center center',
                     }}
                 >
-                    <video
-                        src="https://framerusercontent.com/assets/vByUTRpjIKiQC9dZga6fw6PQLM.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
+                    <div
                         style={{
-                            cursor: "auto",
-                            borderRadius: "0px",
-                            display: "block",
-                            objectPosition: "50% 50%",
-                            backgroundColor: "transparent",
-                            mixBlendMode: "screen",
+                            transform: "perspective(1200px)",
+                            width: "100%",
+                            height: "100%",
+                            background: "rgba(16, 137, 198, 1)",
                         }}
-                    />
-                </div>
-                {/* Gradient Layer */}
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-500/1 via-blue-300/40 to-blue-100 pointer-events-none" />
-            </motion.div>
+                    >
+                        <video
+                            src="https://framerusercontent.com/assets/vByUTRpjIKiQC9dZga6fw6PQLM.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover"
+                            style={{
+                                cursor: "auto",
+                                borderRadius: "0px",
+                                display: "block",
+                                objectPosition: "50% 50%",
+                                backgroundColor: "transparent",
+                                mixBlendMode: "screen",
+                            }}
+                        />
+                    </div>
+                    {/* Gradient Layer */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-blue-500/1 via-blue-300/40 to-blue-100 pointer-events-none" />
+                </motion.div>
+            </div>
+
 
             {/* ── Hero Text Section ─────────────────────────────────────────────── */}
             <section ref={heroTextRef} className="px-6 max-w-7xl mx-auto relative z-10 flex flex-col justify-center min-h-[50vh] xl:min-h-[60vh]">
@@ -246,16 +249,7 @@ export default function Home() {
                 <div className="hidden xl:block pt-48 pb-24">
                     <div className="mb-16 h-32 flex items-center">
                         <AnimatePresence mode="wait">
-                            <motion.h2
-                                key={`mac-${GREETINGS[index]}`}
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: -20, opacity: 0 }}
-                                transition={{ duration: 0.5, ease: "easeOut" }}
-                                className="text-9xl font-bold tracking-tight text-white drop-shadow-xl"
-                            >
-                                {GREETINGS[index]}.
-                            </motion.h2>
+                            <br></br>
                         </AnimatePresence>
                     </div>
                     <div className="flex justify-start">
@@ -305,7 +299,7 @@ export default function Home() {
                 <div className="hidden xl:block mt-32 pb-[25vh]">
                     <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-20 rounded-3xl flex flex-col items-center justify-center">
                         <h2 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
-                            Let me take you on<br /> a journey
+                            contact me if you like the story
                         </h2>
                     </motion.div>
                 </div>
