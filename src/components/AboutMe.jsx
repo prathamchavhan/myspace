@@ -53,11 +53,19 @@ export default function AboutMe() {
     return (
         <section
             data-cursor-text="About me"
-            className="relative w-full pt-8 pb-16 md:pt-12 md:pb-24 px-6 sm:px-10 bg-[#f5f5f3] dark:bg-black transition-colors duration-500 font-sans"
+            className="relative w-full pt-8 pb-16 md:pt-12 md:pb-24 px-6 sm:px-10 transition-colors duration-500 font-sans overflow-hidden"
+            style={{
+                backgroundImage: "url('/assets/flower.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+            }}
         >
+            {/* Light overlay so text is readable */}
+            <div className="absolute inset-0  dark:bg-black/70 backdrop-blur-[2px]" />
             <div
                 ref={containerRef}
-                className="max-w-4xl mx-auto bg-[#f8f9fa] dark:bg-black rounded-[2rem] grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 items-stretch overflow-hidden border-2 sm:border-4 border-white dark:border-white shadow-sm"
+                className="relative z-10 max-w-4xl mx-auto bg-[#f8f9fa]/80 dark:bg-black/80 backdrop-blur-sm rounded-[2rem] grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 items-stretch overflow-hidden border-2 sm:border-4 border-white dark:border-white shadow-sm"
             >
 
                 {/* Left Column: Text */}
